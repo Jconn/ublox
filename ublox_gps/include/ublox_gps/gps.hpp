@@ -409,6 +409,9 @@ class Gps final {
    */
   void setRawDataCallback(const Worker::WorkerRawCallback& callback);
 
+
+  bool sendRtcm(const std::vector<uint8_t>& rtcm);
+
  private:
   //! Types for ACK/NACK messages, WAIT is used when waiting for an ACK
   enum AckType {

@@ -48,6 +48,7 @@
 #include <ublox_gps/gps.hpp>
 #include <ublox_gps/rtcm.hpp>
 #include <ublox_gps/raw_data_pa.hpp>
+#include <rtcm_msgs/msg/rtcm_message.hpp>
 
 // This file also declares UbloxNode which is the main class and ros node. It
 // implements functionality which applies to any u-blox device, regardless of
@@ -132,6 +133,7 @@ class UbloxNode final : public rclcpp::Node {
    */
   void printInf(const ublox_msgs::msg::Inf &m, uint8_t id);
 
+
  private:
 
   /**
@@ -149,6 +151,8 @@ class UbloxNode final : public rclcpp::Node {
    * @brief Shutdown the node. Closes the serial port.
    */
   void shutdown();
+
+  void rtcmCallback(rtcm_msgs::msg::RtcmMessage::ConstSharedPtr msg);
 
   /**
    * @brief Send a reset message the u-blox device & re-initialize the I/O.

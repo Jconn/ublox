@@ -856,6 +856,11 @@ void UbloxNode::initialize() {
   }
 }
 
+void UbloxNode::rtcmCallback(rtcm_msgs::msg::RtcmMessage::ConstSharedPtr msg)
+{
+  gps_->sendRtcm(msg->message);
+}
+
 void UbloxNode::shutdown() {
   if (gps_->isInitialized()) {
     gps_->close();
