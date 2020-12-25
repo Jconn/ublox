@@ -256,6 +256,8 @@ class UbloxNode final : public rclcpp::Node {
   rclcpp::Publisher<ublox_msgs::msg::AidEPH>::SharedPtr aid_eph_pub_;
   rclcpp::Publisher<ublox_msgs::msg::AidHUI>::SharedPtr aid_hui_pub_;
 
+  rclcpp::Subscription<rtcm_msgs::msg::RtcmMessage>::SharedPtr rtcm_sub_;
+
   //! Navigation rate in measurement cycles, see CfgRate.msg
   uint16_t nav_rate_{0};
 

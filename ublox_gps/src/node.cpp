@@ -480,6 +480,9 @@ void UbloxNode::getRosParams() {
   if (getRosBoolean(this, "publish.aid.hui")) {
     aid_hui_pub_ = this->create_publisher<ublox_msgs::msg::AidHUI>("aidhui", 1);
   }
+  rtcm_sub_ = this->create_subscription<rtcm_msgs::msg::RtcmMessage>("gps0/rtcm", 
+          10,
+          std::bind(&UbloxNode::rtcmCallback, this, std::placeholders::_1) );
 }
 
 void UbloxNode::pollMessages() {
