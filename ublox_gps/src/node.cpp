@@ -607,6 +607,13 @@ void UbloxNode::initialize() {
   initializeRosDiagnostics();
 
   //if (configureUblox()) {
+  //
+    if (!gps.configRate(meas_rate, nav_rate)) {
+        std::stringstream ss;
+        ss << "Failed to set measurement rate to " << meas_rate
+            << "ms and navigation rate to " << nav_rate;
+        throw std::runtime_error(ss.str());
+    }
     ROS_INFO("U-Blox configured successfully.");
     // Subscribe to all U-Blox messages
     subscribe();

@@ -1,14 +1,24 @@
 # Configuration Settings for ZED-F9P device
 
-debug: 1                 # Range 0-4 (0 means no debug statements will print)
+debug: 1                # Range 0-4 (0 means no debug statements will print)
 
 device: /dev/ttyACM0
-frame_id: gps0
+frame_id: gps_base_link
+rate: 4                     # in Hz
+nav_rate: 1                 # [# of measurement cycles], recommended 1 Hz, may 
+
+gnss:
+  qzss:  true               # Supported by C94-M8P
+  glonass: true             # Supported by C94-M8P
+  beidou: true             # Supported by C94-M8P
+  gps:  true               # Supported by C94-M8P
+  galileo: true
+  imes: true
 
 uart1:
   baudrate: 115200
   in: 35
-  out: 3
+  out: 35
 
 # Enable u-blox message publishers
 publish:
