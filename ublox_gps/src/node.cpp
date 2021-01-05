@@ -847,7 +847,7 @@ void UbloxNode::initialize() {
   // Do this last
   initializeRosDiagnostics();
 
-  if (configureUblox()) {
+  //if (configureUblox()) {
     RCLCPP_INFO(this->get_logger(), "U-Blox configured successfully.");
     // Subscribe to all U-Blox messages
     subscribe();
@@ -856,7 +856,7 @@ void UbloxNode::initialize() {
 
     poller_ = this->create_wall_timer(std::chrono::milliseconds(static_cast<int64_t>(kPollDuration * 1000.0)),
                                       std::bind(&UbloxNode::pollMessages, this));
-  }
+  //}
 }
 
 void UbloxNode::rtcmCallback(rtcm_msgs::msg::RtcmMessage::ConstSharedPtr msg)
