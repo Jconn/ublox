@@ -515,6 +515,14 @@ void UbloxNode::printInf(const ublox_msgs::msg::Inf &m, uint8_t id) {
   }
 }
 
+void UbloxNode::createBond()
+{
+  RCLCPP_INFO(get_logger(), "Creating bond (%s) to poser.", this->get_name());
+
+  meka_heartbeat_ = std::make_unique<MekaHeartbeatSecondary>(shared_from_this());
+  meka_heartbeat_->createBond();
+}
+
 void UbloxNode::subscribe() {
   RCLCPP_DEBUG(this->get_logger(), "Subscribing to U-Blox messages");
   // subscribe messages

@@ -10,7 +10,9 @@ int main(int argc, char** argv) {
 
   rclcpp::init(argc, argv);
 
-  rclcpp::spin(std::make_shared<ublox_node::UbloxNode>(rclcpp::NodeOptions()));
+  auto ublox_node = std::make_shared<ublox_node::UbloxNode>(rclcpp::NodeOptions());
+  ublox_node->createBond();
+  rclcpp::spin(ublox_node);
 
   rclcpp::shutdown();
 

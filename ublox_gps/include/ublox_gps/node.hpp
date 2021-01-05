@@ -50,6 +50,9 @@
 #include <ublox_gps/raw_data_pa.hpp>
 #include <rtcm_msgs/msg/rtcm_message.hpp>
 
+// Mekaworks includes
+#include "meka_heartbeat_cpp/meka_heartbeat_secondary.hpp"
+
 // This file also declares UbloxNode which is the main class and ros node. It
 // implements functionality which applies to any u-blox device, regardless of
 // the firmware version or product type.  The class is designed in compositional
@@ -107,6 +110,8 @@ class UbloxNode final : public rclcpp::Node {
   UbloxNode(const UbloxNode &c) = delete;
   UbloxNode &operator=(const UbloxNode &c) = delete;
 
+  void createBond();
+
   /**
    * @brief Get the node parameters from the ROS Parameter Server.
    */
@@ -140,6 +145,8 @@ class UbloxNode final : public rclcpp::Node {
    * @brief Initialize the I/O handling.
    */
   void initializeIo();
+  
+  std::unique_ptr<MekaHeartbeatSecondary> meka_heartbeat_{nullptr};
 
   /**
    * @brief Initialize the U-Blox node. Configure the U-Blox and subscribe to
